@@ -5,8 +5,8 @@ import ContactList from '../components/ContactList/ContactList';
 import { fetchContacts } from '../redux/contacts/operations';
 import { selectIsLoading } from '../redux/contacts/selectors';
 
-export default function Contacts() {
-    const dispatch = useDispatch();
+const Contacts =() =>{
+  const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
@@ -15,9 +15,11 @@ export default function Contacts() {
 
     return (
     <>
-      <DocumentTitle>Your tasks</DocumentTitle>
+      <DocumentTitle>Your contact</DocumentTitle>
             <div>{isLoading && 'Request in progress...'}</div>
             <ContactList/>
     </>
   );
 }
+
+export default Contacts;

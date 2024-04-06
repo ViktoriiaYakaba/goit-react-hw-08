@@ -11,8 +11,7 @@ const SearchBox = () => {
     
     const handleChange = (e) => {
     dispatch(changeNameFilter(e.target.value));
-  };
-    
+  }; 
      return (
     <div >
       <h3 >Find contacts by name</h3>
