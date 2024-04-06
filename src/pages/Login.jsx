@@ -1,7 +1,7 @@
-import DocumentTitle from '../components/DocumentTitle';
-import LoginForm from '../components/LoginForm/LoginForm';
+import { DocumentTitle }from '../components/DocumentTitle';
+import { LoginForm } from '../components/LoginForm/LoginForm';
 
-const Login=() =>{
+const Login = () => {
   return (
     <div>
       <DocumentTitle>Login</DocumentTitle>
@@ -9,4 +9,5 @@ const Login=() =>{
     </div>
   );
 }
+
 export default Login;

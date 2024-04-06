@@ -3,7 +3,7 @@ import { changeNameFilter } from '../../redux/filters/slice';
 import { selectFilteredContacts } from '../../redux/filters/selectors';
 import { selectError, selectIsLoading } from '../../redux/contacts/selectors';
 
-const SearchBox = () => {
+export const SearchBox = () => {
     const dispatch = useDispatch();
     const nameFilter = useSelector(selectFilteredContacts);
     const isLoading = useSelector(selectIsLoading); 
@@ -24,4 +24,4 @@ const SearchBox = () => {
   );
 
 }
-export default SearchBox;
+

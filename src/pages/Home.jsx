@@ -1,16 +1,15 @@
-import DocumentTitle from '../components/DocumentTitle';
-import ContactForm from '../components/ContactForm/ContactForm';
+import { DocumentTitle } from '../components/DocumentTitle';
+import css from './Pages.module.css';
 
 
-const Home=() =>{
+ const Home = () => {
   return (
     <>
       <DocumentTitle>Home</DocumentTitle>
-      <div >
-        <h1>
+      <div className={css.container}>
+        <h1 className={css.title}>
           Contacts manager welcome page
         </h1>
-        <ContactForm/>
       </div>
     </>
   );

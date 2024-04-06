@@ -1,7 +1,7 @@
-import DocumentTitle from '../components/DocumentTitle';
-import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
+import { DocumentTitle } from '../components/DocumentTitle';
+import { RegistrationForm }  from '../components/RegistrationForm/RegistrationForm';
 
-const Register=() =>{
+const Register = () => {
   return (
     <div>
       <DocumentTitle>Registration</DocumentTitle>

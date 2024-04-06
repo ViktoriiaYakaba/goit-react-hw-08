@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contacts/operations';
 import PropTypes from 'prop-types';
 
-const Contact = ({contact}) => {
+export const Contact = ({contact}) => {
     const dispatch = useDispatch();
     const handleDelete = () => dispatch(deleteContact(contact.id));
     
@@ -18,4 +18,4 @@ Contact.propTypes = {
   contact: PropTypes.object.isRequired, 
 };
 
-export default Contact;
+
