@@ -1,32 +1,59 @@
-import { useState } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
+import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (name.trim() === '' || phoneNumber.trim() === '') {
-      console.log("Name and phone number are required."); 
-    } else {
-      dispatch(addContact({ name, phoneNumber }));
-      setName('');
-      setPhoneNumber('');
-    }
+  const initialValues = {
+    name: '',
+    number: ''
   };
-    
+
+  const contactSchema = Yup.object().shape({
+    name: Yup.string()
+      .required('Name is required')
+      .trim()
+      .min(3, 'Must be at least 3 characters')
+      .max(20, 'Must be 20 characters or less'),
+    number: Yup.string()
+      .required('Phone number is required')
+      .trim()
+       .min(3, 'Must be at least 3 characters')
+      .max(20, 'Must be 20 characters or less'),
+  });
+
+  const handleSubmit = (values, { resetForm }) => {
+    dispatch(addContact(values));
+    resetForm();
+  };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit} >
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name"  />
-        <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="Phone Number"  />
-        <button type="submit" >Add Contact</button>
-      </form>
-    </div>
+    <>
+      <h1 className={css.title}>PHONEBOOK</h1>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={contactSchema}
+        onSubmit={handleSubmit}
+      >
+        <Form className={css.form}>
+          <div className={css.container}>
+            <Field type="text" name="name" placeholder="Name" className={css.file} />
+            <ErrorMessage name="name" component="div" className={css.error} />
+          </div>
+          <div className={css.container}>
+            <Field type="text" name="number" placeholder="Phone Number" className={css.file} />
+            <ErrorMessage name="number" component="div" className={css.error} />
+          </div>
+          <button type="submit" className={css.btn}>Add Contact</button>
+        </Form>
+      </Formik>
+   </>
   );
 };
+
+
 
 

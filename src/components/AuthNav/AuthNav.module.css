@@ -11,6 +11,9 @@
         color: #404565;
 }
 
+.active{
+    color: #8590c0;
+}
 .item:hover{
     color: #8590c0;
         transition: 300ms linear, color 300ms linear;

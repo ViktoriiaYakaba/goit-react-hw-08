@@ -1,34 +1,68 @@
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 import css from './RegistrationForm.module.css';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
 
 export const RegistrationForm = () => {
     const dispatch = useDispatch();
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const form = e.target;
 
-        dispatch(
-            register({
-                name: form.elements.name.value,
-                email: form.elements.email.value,
-                password: form.elements.password.value,
-            })
-        );
-        form.reset();
+    const userSchema =  Yup.object({
+    name: Yup.string()
+      .min(3, 'Must be at least 3 characters')
+      .max(50, 'Must be 50 characters or less')
+      .required('Required')
+      .trim(),
+    email: Yup.string().email().required('Required').trim(),
+    password: Yup.string()
+        .min(3, 'Must be at least 3 characters')
+        .trim()
+      .max(8, 'Must be 8 characters or less')
+      .required('Required'),
+  });
+
+
+    const initialValues = {
+        name: '',
+        email: '',
+        password: ''
     };
 
-    
+    const handleSubmit = (values, { resetForm }) => {
+        dispatch(register(values));
+        resetForm();
+    };
+
     return (
-        <form onSubmit={handleSubmit} autoComplete='off' className={css.form} >
-            <input type='text' name='name' placeholder='Username' className={css.file} />
-            <input type='email' name='email' placeholder='Email' className={css.file} />
-            <input type='password' name='password' placeholder='Password' className={css.file} />
-            <button type='submit' className={css.btn} >Register</button>
-        </form>
-    )
+        <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validationSchema={userSchema}
+           
+        >
+            <Form autoComplete='off' className={css.form}>
+                <div className={css.container}>
+                    <Field type='text' name='name' placeholder='Username' className={css.file} />
+                    <ErrorMessage name='name' component='div' className={css.error} />
+                </div>
+
+               <div className={css.container}>
+                    <Field type='email' name='email' placeholder='Email' className={css.file} />
+                    <ErrorMessage name='email' component='div' className={css.error} />
+                </div>
+                
+               <div className={css.container}>
+                    <Field type='password' name='password' placeholder='Password' className={css.file} />
+                    <ErrorMessage name='password' component='div' className={css.error} />
+               </div>
+
+                <button type='submit' className={css.btn}>Register</button>
+            </Form>
+        </Formik>
+    );
 };
+
 
 
 
