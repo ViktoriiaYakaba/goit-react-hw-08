@@ -37,6 +37,7 @@ export const Contact = ({ contact }) => {
   };
 
   const handleChange = (e) => {
+    console.log('worl')
     const { name, value } = e.target;
     setEditedContact({ ...editedContact, [name]: value });
   };
