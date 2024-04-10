@@ -20,7 +20,6 @@ export const LoginForm = () => {
   const handleSubmit = async (values, { resetForm }) => {
     try {
       await dispatch(logIn(values));
-      console.log('Login success');
       resetForm();
     } catch (error) {
       console.log('Login error');
