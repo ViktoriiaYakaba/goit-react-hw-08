@@ -6,41 +6,45 @@ import PropTypes from 'prop-types';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiSolidEditAlt } from "react-icons/bi";
 import { ModalEdit } from './ModalEdit';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import css from './Contact.module.css';
 
 export const Contact = ({ contact }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [editedContact, setEditedContact] = useState({ ...contact });
+  const [editedContact, setEditedContact] = useState(contact);
 
   const handleDelete = () => {
     dispatch(deleteContact(contact.id))
-      .then((response) => {
-        console.log('Contatto eliminato con successo:', response);
+      .then(() => {
+        Notify.success('Contact successfully deleted');
         setIsModalOpen(false);
       })
       .catch((error) => {
-        console.error('Errore durante l\'eliminazione del contatto:', error);
+        Notify.error('Error deleting contact')
+        console.error(error);
       });
   };
 
   const handleEdit = () => {
-    dispatch(updateContact({ contactId: editedContact.id, updatedData: editedContact }))
-      .then((response) => {
-        console.log('Contatto aggiornato con successo:', response);
-        setIsEditModalOpen(false);
-      })
-      .catch((error) => {
-        console.error('Errore durante l\'aggiornamento del contatto:', error);
-      });
-  };
+  dispatch(updateContact({ id: editedContact.id, name: editedContact.name, number: editedContact.number }))
+    .then(() => {
+      Notify.success('Contact updated successfully');
+      setIsEditModalOpen(false);
+    })
+    .catch((error) => {
+      Notify.error('Error updating contact');
+      console.error(error);
+    });
+};
 
-  const handleChange = (e) => {
-    console.log('worl')
-    const { name, value } = e.target;
-    setEditedContact({ ...editedContact, [name]: value });
-  };
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setEditedContact({ ...editedContact, [name]: value });
+};
+
 
   return (
     <li className={css.list}>

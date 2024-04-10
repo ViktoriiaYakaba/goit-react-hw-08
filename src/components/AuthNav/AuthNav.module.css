@@ -6,9 +6,9 @@
 .item{
     text-decoration: none;
     font-size: 18px;
-        font-weight: 400;
-        line-height: normal;
-        color: #404565;
+    font-weight: 400;
+    line-height: normal;
+    color: #404565;
 }
 
 .active{

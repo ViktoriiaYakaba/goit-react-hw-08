@@ -24,11 +24,11 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-export const ModalDelete = ({ isOpen, onRequestClose, onDelete }) => { // Aggiungi la prop onDelete
+export const ModalDelete = ({ isOpen, onRequestClose, onDelete }) => { 
   
 
-  const handleDelete = () => {
-    onDelete(); // Chiamare la funzione onDelete
+    const handleDelete = () => {
+    onDelete(); 
     onRequestClose();
   };
 

@@ -21,7 +21,7 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
 }
 
 .container {
@@ -39,7 +39,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
 }
 
 .btn {
@@ -51,7 +51,7 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 1.5;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     cursor: pointer;
     border: 1px solid #616691;
     background-color: transparent;

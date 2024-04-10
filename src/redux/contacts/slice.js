@@ -43,12 +43,13 @@ const contactsSlice = createSlice({
            .addCase(deleteContact.rejected, handleRejected) 
            .addCase(updateContact.pending, handlePending)
            .addCase(updateContact.fulfilled, (state, action) => {
-          state.isLoading = false;
-          state.error = null;
-          const index = state.items.findIndex((contact) => contact.id === action.payload.id);
-          if (index !== -1) {
-            state.items[index] = action.payload;
-          }
+          const index = state.items.findIndex(
+          task => task.id === action.payload.id
+        );
+        state.items.splice(index, 1);
+        state.items.unshift(action.payload);
+        state.isLoading = false;
+        state.error = null;
       })
             .addCase(updateContact.rejected, handleRejected);
         }

@@ -1,5 +1,6 @@
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+import css from './ModalEdit.module.css';
 
 const customStyles = {
   overlay: {
@@ -8,17 +9,24 @@ const customStyles = {
   content: {
     width: '400px',
     height: '300px',
-    backgroundColor: '#fff',
+    backgroundColor: '#e3d0e0',
     margin: 'auto',
     border: '1px solid #ccc',
     borderRadius: '8px',
-    padding: '20px'
+    padding: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 };
 
 Modal.setAppElement('#root');
 
 export const ModalEdit = ({ isOpen, onRequestClose, contact, onSubmit, handleChange }) => {
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,19 +41,17 @@ export const ModalEdit = ({ isOpen, onRequestClose, contact, onSubmit, handleCha
       onRequestClose={onRequestClose}
       style={customStyles}
       contentLabel="Edit Contact Modal"
+      
+      
     >
-      <h2>Edit Contact</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" name="name" value={contact.name} onChange={handleChange} />
+      <h2 className={css.title}>Edit Contact</h2>
+      <form onSubmit={handleSubmit} className={css.form}>
+          <input type="text" id="name" name="name" value={contact.name} onChange={handleChange} className={css.input} placeholder='Name'/>
+          <input type="text" id="number" name="number" value={contact.number} onChange={handleChange} className={css.input } placeholder='Phone number'/>
+        <div className={css.wrap}>
+          <button type="submit" className={css.btn}>Save Changes</button>
+          <button type="button" onClick={onRequestClose} className={css.btn}>Cancel</button>
         </div>
-        <div>
-          <label htmlFor="number">Number:</label>
-          <input type="text" id="number" name="number" value={contact.number} onChange={handleChange} />
-        </div>
-        <button type="submit">Save Changes</button>
-        <button type="button" onClick={onRequestClose}>Cancel</button>
       </form>
     </Modal>
   );

@@ -16,13 +16,13 @@ import { SearchBox } from '../components/SearchBox/SearchBox';
   }, [dispatch]);
 
     return (
-      <>
+      <div>
         <ContactForm />
       <DocumentTitle>Your contacts</DocumentTitle>
         <div>{isLoading && 'Request in progress...'}</div>
         <SearchBox />
-          <ContactList/>
-    </>
+        <ContactList />
+    </div>
   );
 }
 export default Contacts;
