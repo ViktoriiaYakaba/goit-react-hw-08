@@ -16,7 +16,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/signup', credentials);
+      const res = await axios.post('/users/register', credentials);
       setAuthHeader(res.data.token);
       Notify.success('Welcome to phonebook!');
       return res.data;
@@ -59,6 +59,7 @@ export const refreshUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
+      Notify.error('Unable to fetch user');
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
@@ -67,6 +68,7 @@ export const refreshUser = createAsyncThunk(
       const res = await axios.get('/users/current');
       return res.data;
     } catch (error) {
+      Notify.error(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

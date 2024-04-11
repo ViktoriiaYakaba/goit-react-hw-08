@@ -11,7 +11,7 @@ import { Loader } from './Loader/Loader';
 
 
 const HomePage = lazy(() => import('../pages/Home'));
-const RegisterPage = lazy(() => import('../pages/Register'));
+const RegisterPage = lazy(() => import('../components/Register/Register'));
 const LoginPage = lazy(() => import('../pages/Login'));
 const ContactsPage = lazy(() => import('../pages/Contacts'));
 
@@ -24,14 +24,13 @@ export const App = () => {
     }, [dispatch]);
 
     return (
-        <>
+        <Layout>
             {isRefreshing ? (
                 <b><Loader/></b>
             ) : (
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={null}>
                    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
+        <Route path='/' element={<HomePage />} />
         <Route
           path="/register"
           element={
@@ -53,11 +52,10 @@ export const App = () => {
             <PrivateRoute redirectTo="/login" component={ContactsPage } />
           }
         />
-      </Route>
     </Routes>
                 </Suspense>
             )}
-        </>
+        </Layout>
     );
 }
 
