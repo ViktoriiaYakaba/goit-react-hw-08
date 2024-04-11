@@ -10,8 +10,8 @@
 .form {
         padding: 20px;
         width: 400px;
-       display: flex;
-      flex-direction: column;
+        display: flex;
+        flex-direction: column;
         gap: 20px;
         justify-content: center;
         margin: auto;

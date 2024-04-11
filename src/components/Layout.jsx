@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { AppBar } from './AppBar/AppBar';
 
 const styles ={
-    maxWidth: '1200px',
+    maxWidth: '900px',
     margin: '0 auto', 
     padding: '0 16px',
    
