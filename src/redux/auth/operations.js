@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -16,7 +16,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/register', credentials);
+      const res = await axios.post('/users/singup', credentials);
       setAuthHeader(res.data.token);
       Notify.success('Welcome to phonebook!');
       return res.data;
@@ -70,7 +70,7 @@ export const refreshUser = createAsyncThunk(
     } catch (error) {
       Notify.error(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
-    }
+ 
+   }
   }
 );
-

@@ -31,7 +31,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <div className={css.container}>
+    <>
       <h1 className={css.title}>PHONEBOOK</h1>
       <Formik
         initialValues={initialValues}
@@ -50,7 +50,7 @@ export const ContactForm = () => {
           <button type="submit" className={css.btn}>Add Contact</button>
         </Form>
       </Formik>
-   </div>
+   </>
   );
 };
 
