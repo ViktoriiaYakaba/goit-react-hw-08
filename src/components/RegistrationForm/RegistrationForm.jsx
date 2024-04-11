@@ -18,7 +18,7 @@ export const RegistrationForm = () => {
     password: Yup.string()
         .min(3, 'Must be at least 3 characters')
         .trim()
-      .max(8, 'Must be 8 characters or less')
+      .max(10, 'Must be 10 characters or less')
       .required('Required'),
   });
 
